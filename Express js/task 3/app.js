@@ -12,6 +12,8 @@ const contactusRoutes = require('./routes/contactus');
 const bodyParser = require('body-parser');
 const exp = require('constants');
 
+const errorController = require('./controllers/error');
+
 
 app.use(bodyParser.urlencoded({extended:false}));
 
@@ -21,9 +23,7 @@ app.use('/admin',adminRoutes);
 app.use('/shop',shopRoutes);
 app.use(contactusRoutes);
 
-app.use((req,res,next)=>{
-    res.status(404).sendFile(path.join(__dirname,'views','404.html'));
-});
+app.use(errorController.get404);
 
 
 app.listen(3000);

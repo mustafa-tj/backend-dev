@@ -5,12 +5,10 @@ const rootDir = require('../util/path');
 
 const router = express.Router();
 
-router.get('/contactus',(req,res,next)=>{
-    res.sendFile(path.join(rootDir,'views','contactus.html'));
-});
+const contactController = require('../controllers/contactus');
 
-router.post('/success',(req,res,next)=>{
-    res.sendFile(path.join(rootDir, 'views', 'success.html'))
-});
+router.get('/contactus',contactController.contactForm);
+
+router.post('/success',contactController.formSuccess);
 
 module.exports = router;
